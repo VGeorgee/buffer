@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "name": "Include",
+            "includePath": [
+                "${workspaceFolder}/include/utils",
+                "${workspaceFolder}/include/buffer"
+            ]
+        }
+    ],
+    "version": 4
+}
