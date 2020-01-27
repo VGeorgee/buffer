@@ -1,8 +1,9 @@
 
-#include "buddy.h"
+#include "buffer.h"
 
 STACK *memory_blocks[32] = {NULL};
 void *memory;
+
 void init_buddy(){
     int i;
     for(i = 0; i < 32; memory_blocks[i++] = new_stack());
@@ -10,6 +11,7 @@ void init_buddy(){
     int index = get_power_bound_for(size);
     push_stack(memory_blocks[index], 0, size - 1);
     memory = calloc(size, sizeof(uint8_t));
+    //todo// initialize map after changes
 }
 
 
@@ -20,8 +22,8 @@ void *balloc(int n){
     if(memory_blocks[index]->size > 0){
         allocated = pop_stack(memory_blocks[index]);
         printf("allocated start: %d\n", allocated->lower_bound);
-        
-        put_map(allocated->lower_bound, allocated->upper_bound - allocated->lower_bound + 1); 
+
+        put_map(allocated->lower_bound, allocated->upper_bound - allocated->lower_bound + 1);
         return (void *)((int)memory + (int)allocated->lower_bound);//if eligible block found, return it
     }
 
@@ -37,11 +39,11 @@ void *balloc(int n){
 
     for(; search_for_bigger >= index; search_for_bigger--){
 
-        push_stack(memory_blocks[search_for_bigger], 
+        push_stack(memory_blocks[search_for_bigger],
                     allocated->lower_bound + (allocated->upper_bound - allocated->lower_bound + 1) / 2,
                     allocated->upper_bound);
-        
-        push_stack(memory_blocks[search_for_bigger], 
+
+        push_stack(memory_blocks[search_for_bigger],
                 allocated->lower_bound,
                 allocated->lower_bound + (allocated->upper_bound - allocated->lower_bound) / 2);
 
@@ -51,7 +53,7 @@ void *balloc(int n){
     }
 
 
-    put_map(allocated->lower_bound, allocated->upper_bound - allocated->lower_bound + 1); 
+    put_map(allocated->lower_bound, allocated->upper_bound - allocated->lower_bound + 1);
     return (void *)((int)allocated->lower_bound + (int)memory);
 
 }
@@ -65,23 +67,23 @@ void bfree(int n){
         printf("not found node!\n");
         return;
     }
-    
+
     int index = get_power_bound_for(get_map(n));
 
-    int i, buddyNumber, buddyAddress, pow_of_index; 
+    int i, buddyNumber, buddyAddress, pow_of_index;
 
     pow_of_index = (int)pow(2, index);
 
     push_stack(memory_blocks[index], n, n + pow_of_index - 1);
 
     buddyNumber = n / get_map(n);
-    
-    if (buddyNumber % 2 == 0) {  
-        buddyAddress = n - pow_of_index; 
-    } 
-    else { 
-        buddyAddress = n + pow_of_index; 
-    } 
+
+    if (buddyNumber % 2 == 0) {
+        buddyAddress = n - pow_of_index;
+    }
+    else {
+        buddyAddress = n + pow_of_index;
+    }
 
     PAIR *element = memory_blocks[index]->head;
     PAIR *prev = element;
@@ -90,7 +92,7 @@ void bfree(int n){
     for (i = 0; i < memory_blocks[index]->size; i++) {
 
         if(element->lower_bound == buddyAddress){
-            if (buddyNumber % 2 == 0) { 
+            if (buddyNumber % 2 == 0) {
                 push_stack(memory_blocks[index + 1], n, n + 2 * pow_of_index - 1 );
 
             }

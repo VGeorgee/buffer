@@ -4,7 +4,7 @@
             "name": "Include",
             "includePath": [
                 "${workspaceFolder}/include/utils",
-                "${workspaceFolder}/include/buffer"
+                "${workspaceFolder}/include/"
             ]
         }
     ],
