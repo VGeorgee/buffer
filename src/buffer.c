@@ -14,7 +14,11 @@ void init_buddy(){
     //todo// initialize map after changes
 }
 
-
+/**
+ *
+ * @param n
+ * @return
+ */
 void *balloc(int n){
     int index = get_power_bound_for(n);
     PAIR *allocated = NULL;

@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "greatest.h"
 #include "utils.h"
-#include "buddy.h"
+#include "buffer.h"
 
 SUITE_EXTERN(other_suite);
 
@@ -13,8 +13,8 @@ SUITE(suite);
 
 TEST buddy_tests(void) {
     init_buddy();
-    int a = balloc(1024);
-    int b = balloc(2048);
+    int *a = (int *) balloc(1024);
+    int *b = (int *) balloc(2048);
     printf("memory pointer:::   %d\n", a);
     bfree(a);
     bfree(b);
