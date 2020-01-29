@@ -25,8 +25,6 @@ void *balloc(int n){
 
     if(memory_blocks[index]->size > 0){
         allocated = pop_stack(memory_blocks[index]);
-        printf("allocated start: %d\n", allocated->lower_bound);
-
         put_map(allocated->lower_bound, allocated->upper_bound - allocated->lower_bound + 1);
         return (void *)((int)memory + (int)allocated->lower_bound);//if eligible block found, return it
     }
