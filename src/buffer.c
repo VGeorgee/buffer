@@ -68,7 +68,6 @@ void *balloc(int n){
 void bfree(int n){
     n -= (int)memory;
     if(!contains_map(n)){
-        printf("not found node!\n");
         return;
     }
 
@@ -82,12 +81,7 @@ void bfree(int n){
 
     buddyNumber = n / get_map(n);
 
-    if (buddyNumber % 2 == 0) {
-        buddyAddress = n - pow_of_index;
-    }
-    else {
-        buddyAddress = n + pow_of_index;
-    }
+    buddyAddress = buddyNumber % 2 == 0 ?  n - pow_of_index : n + pow_of_index;
 
     PAIR *element = memory_blocks[index]->head;
     PAIR *prev = element;
@@ -103,7 +97,6 @@ void bfree(int n){
             else {
                 push_stack(memory_blocks[index + 1], buddyAddress, buddyAddress + 2 * pow_of_index - 1);
             }
-
 
             prev->next = element->next;
             free(element);
