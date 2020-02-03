@@ -7,8 +7,7 @@
             "type": "shell",
             "label": "cl.exe build active file",
             "command": "g++",
-            "args": [ "${file}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe", 
-            ],
+            "args": [ "${file}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"],
             "problemMatcher": ["$gcc"],
             "group": {
                 "kind": "build",
