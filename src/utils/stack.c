@@ -6,6 +6,7 @@ STACK *new_stack(){
     stack->size = 0;
     stack->head = NULL;
     stack->tail = NULL;
+    return stack;
 }
 
 
