@@ -15,7 +15,7 @@ TEST buddy_tests(void) {
     init_buddy();
     int *a = (int *) balloc(1024);
     int *b = (int *) balloc(2048);
-    printf("memory pointer:::   %d\n", a);
+    printf("memory pointer:::   %ld\n", a);
     bfree(a);
     bfree(b);
     bfree(b);

@@ -1,10 +1,3 @@
-#ifndef STD
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <stdint.h>
-    #define STD
-#endif
-
 #include "utils.h"
 
 int get_power_bound_for(int n){
