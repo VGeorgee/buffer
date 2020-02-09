@@ -2,19 +2,18 @@ language: C
 compiler: gcc
 
 script:
-  - gcc -coverage -I ./include /test/scr/buddy.c src/*.c -o buddy
+  - gcc -coverage -I ./include /test/scr/buddy.test.c src/*.c -o buddy
   - gcov buddy
   - ./buddy
-  - gcc -coverage -I ./include /test/scr/map.c src/*.c -o map
+  - gcc -coverage -I ./include /test/scr/map.test.c src/*.c -o map
   - gcov map
   - ./map
-  - gcc -coverage -I ./include /test/scr/stack.c src/*.c -o stack
+  - gcc -coverage -I ./include /test/scr/stack.test.c src/*.c -o stack
   - gcov stack
   - ./stack
-  - gcc -coverage -I ./include /test/scr/utils.c src/*.c -o utils
+  - gcc -coverage -I ./include /test/scr/utils.test.c src/*.c -o utils
   - gcov utils
   - ./utils
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  
