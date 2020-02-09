@@ -29,6 +29,7 @@ TEST buddy_tests(void) {
     bfree(b);
     bfree(c);
     bfree(d);
+    bfree(0); //deallocating unallocated memory
     allocate(4096);
     PASS();
 }
