@@ -15,10 +15,12 @@ TEST buddy_tests(void) {
     init_buddy();
     int *a = (int *) balloc(1024);
     int *b = (int *) balloc(2048);
-    printf("memory pointer:::   %ld\n", a);
+    int *c = (int *) balloc(123);
+    int *d = (int *) balloc(1023);
     bfree(a);
     bfree(b);
-    bfree(b);
+    bfree(c);
+    bfree(d);
     PASS();
 }
 
