@@ -46,7 +46,6 @@ TEST map_tests(void) {
     PASS();
 }
 
-/*
 GREATEST_MAIN_DEFS();
 
 int main(int argc, char **argv){
@@ -58,4 +57,3 @@ int main(int argc, char **argv){
 
     return 0;
 }
-// */

@@ -37,7 +37,6 @@ TEST stack_assertions(void) {
     PASS();
 }
 
-/*
 GREATEST_MAIN_DEFS();
 
 int main(int argc, char **argv){
@@ -46,4 +45,4 @@ int main(int argc, char **argv){
     GREATEST_MAIN_END();
     return 0;
 }
-// */
+

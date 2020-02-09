@@ -30,7 +30,7 @@ TEST get_optimal_size_for_tests(void) {
     ASSERT(get_optimal_size_for(128) == 128);
     PASS();
 }
-/*
+
 GREATEST_MAIN_DEFS();
 
 
@@ -46,4 +46,4 @@ int main(int argc, char **argv){
 
     return 0;
 }
-// */
+
