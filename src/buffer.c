@@ -22,10 +22,12 @@ void init_buddy(){
 void *balloc(int n){
     int index = get_power_bound_for(n);
     PAIR *allocated = NULL;
-
+    int add;
     if(memory_blocks[index]->size > 0){
         allocated = pop_stack(memory_blocks[index]);
-        put_map(allocated->lower_bound, allocated->upper_bound - allocated->lower_bound + 1);
+        add = put_map(allocated->lower_bound, allocated->upper_bound - allocated->lower_bound + 1);
+        if(add != 1) 
+            return -1;
         return (void *)((int)memory + (int)allocated->lower_bound);//if eligible block found, return it
     }
 
@@ -56,6 +58,9 @@ void *balloc(int n){
 
 
     put_map(allocated->lower_bound, allocated->upper_bound - allocated->lower_bound + 1);
+    if(add != 1) 
+            return -1;
+
     return (void *)((int)allocated->lower_bound + (int)memory);
 
 }
