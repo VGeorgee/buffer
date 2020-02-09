@@ -5,6 +5,7 @@ script:
   - gcc -coverage -I ./include -I ./include/utils test/src/buddy.test.c src/*.c src/utils/*.c -o buddy -lm
   - gcov buddy
   - ./buddy
+  - bash <(curl -s https://codecov.io/bash)
   - gcc -coverage -I ./include -I ./include/utils test/src/map.test.c src/*.c src/utils/*.c -o map -lm
   - gcov map
   - ./map
