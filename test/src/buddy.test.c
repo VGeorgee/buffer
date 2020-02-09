@@ -11,6 +11,14 @@ SUITE_EXTERN(other_suite);
 
 SUITE(suite);
 
+void allocate(int n){
+    int *c = (int *) balloc(2);
+    if(n){
+        allocate(n - 1);
+    }
+    bfree(c);
+}
+
 TEST buddy_tests(void) {
     init_buddy();
     int *a = (int *) balloc(1024);
@@ -21,6 +29,7 @@ TEST buddy_tests(void) {
     bfree(b);
     bfree(c);
     bfree(d);
+    allocate(4096);
     PASS();
 }
 
