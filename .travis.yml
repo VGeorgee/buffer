@@ -9,9 +9,11 @@ script:
   - gcc -coverage -I ./include -I ./include/utils test/src/map.test.c src/*.c src/utils/*.c -o map -lm
   - gcov map
   - ./map
+  - bash <(curl -s https://codecov.io/bash)
   - gcc -coverage -I ./include -I ./include/utils test/src/stack.test.c src/*.c src/utils/*.c -o stack -lm
   - gcov stack
   - ./stack
+  - bash <(curl -s https://codecov.io/bash)
   - gcc -coverage -I ./include -I ./include/utils test/src/utils.test.c src/*.c src/utils/*.c -o utils -lm
   - gcov utils
   - ./utils
